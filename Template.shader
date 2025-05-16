@@ -1,4 +1,4 @@
-Shader "Foth/Aglina"
+Shader "Foth/Template"
 {
     Properties
     {
@@ -12,12 +12,6 @@ Shader "Foth/Aglina"
         _AlphaClip("Alpha Clipping",Range(0,1))=0.333
 
 
-
-
-
-
-
-
         [Header(Option)]
         [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull (Default back)",Float)=2
         [Enum(Off,0,On,1)] _ZWrite ("ZWrite (Default On)",Float)=1
@@ -29,18 +23,18 @@ Shader "Foth/Aglina"
         [Enum(UnityEngine.Rendering.StencilOp)]_StencilPassOp ("Stencil pass operation",Int)=0
         [Enum(UnityEngine.Rendering.StencilOp)]_StencilFailOp ("Stencil fail operation",Int)=0
         [Enum(UnityEngine.Rendering.StencilOp)]_StencilZFailOp ("Stencil Z fail operation",Int)=0
-      
-        [Header(SRP Default)]
-        [Toggle(_SRP_DEFAULT_PASS)]_SRPDefaultPass ("SRP Default Pass",Int)=0
-        [Enum(UnityEngine.Rendering.BlendMode)]_SRPSrcBlendMode ("SRP src blend mode (Default One)",Float)=1
-        [Enum(UnityEngine.Rendering.BlendMode)]_SRPDstBlendMode ("SRP dst blend mode (Default Zero)",Float)=0
-        [Enum(UnityEngine.Rendering.BlendOp)]_SRPBlendOp ("SRP blend operation (Default Add)",Float) =0
+    
+        //[Header(SRP Default)]
+        //[Toggle(_SRP_DEFAULT_PASS)]_SRPDefaultPass ("SRP Default Pass",Int)=0
+        //[Enum(UnityEngine.Rendering.BlendMode)]_SRPSrcBlendMode ("SRP src blend mode (Default One)",Float)=1
+        //[Enum(UnityEngine.Rendering.BlendMode)]_SRPDstBlendMode ("SRP dst blend mode (Default Zero)",Float)=0
+        //[Enum(UnityEngine.Rendering.BlendOp)]_SRPBlendOp ("SRP blend operation (Default Add)",Float) =0
         
-        _SRPStencilRef ("SRP stencil reference",Int)=0
-        [Enum(UnityEngine.Rendering.CompareFunction)]_SRPStencilComp ("SRP stencil compare function",Int)=0
-        [Enum(UnityEngine.Rendering.StencilOp)]_SRPStencilPassOp ("SRP stencil pass operation",Int)=0
-        [Enum(UnityEngine.Rendering.StencilOp)]_SRPStencilFailOp ("SRP stencil fail operation",Int)=0
-        [Enum(UnityEngine.Rendering.StencilOp)]_SRPStencilZFailOp ("SRP stencil Z fail operation",Int)=0
+        //_SRPStencilRef ("SRP stencil reference",Int)=0
+        //[Enum(UnityEngine.Rendering.CompareFunction)]_SRPStencilComp ("SRP stencil compare function",Int)=0
+        //[Enum(UnityEngine.Rendering.StencilOp)]_SRPStencilPassOp ("SRP stencil pass operation",Int)=0
+        //[Enum(UnityEngine.Rendering.StencilOp)]_SRPStencilFailOp ("SRP stencil fail operation",Int)=0
+        //[Enum(UnityEngine.Rendering.StencilOp)]_SRPStencilZFailOp ("SRP stencil Z fail operation",Int)=0
     }
     
 
@@ -107,6 +101,13 @@ Shader "Foth/Aglina"
 
         float4 MainFS (UniversalVaryings input) : SV_Target
         {
+            float3 normalWS = normalize(input.normalWS);
+            float3 positionWS = input.positionWSAndFogFactor.xyz;
+            float3 viewDirectionWS = normalize(input.viewDirectionWS);
+            float3 tangentWS = normalize(input.tangentWS.xyz);
+            float3 bitangentWS = cross(normalWS,tangentWS) * input.tangentWS.w;
+            float2 uv = input.uv;
+
             return float4(0,0,1,1);
         } 
         
