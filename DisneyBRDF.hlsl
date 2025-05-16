@@ -1,3 +1,20 @@
+// # variables go here...
+// # [type] [name] [min val] [max val] [default val]
+// ::begin parameters
+// color baseColor .82 .67 .16
+// float metallic 0 1 0
+// float subsurface 0 1 0
+// float specular 0 1 .5
+// float roughness 0 1 .5
+// float specularTint 0 1 0
+// float anisotropic 0 1 0
+// float sheen 0 1 0
+// float sheenTint 0 1 .5
+// float clearcoat 0 1 0
+// float clearcoatGloss 0 1 1
+// ::end parameters
+
+
 struct DisneyBrdfData
 {
     float3 albedo;
