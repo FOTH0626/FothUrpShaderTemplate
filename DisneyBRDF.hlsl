@@ -127,8 +127,8 @@ float3 DisneyBrdf(float3 lightDir, float3 viewDir, float3 normal, float3 X, floa
     float Ds = GTR2_aniso(NoH,dot(H,X), dot(H,Y), ax, ay);
     float FH = FresnelSchlick(LoH);
     float3 Fs = lerp(Cspec0, float3(1,1,1), FH);
-    float Gs = smithG_GGX_aniso(NoL,dot(lightDirectionWS,X), dot(lightDirectionWS,Y), ax, ay);
-    Gs *= smithG_GGX_aniso(NoV, dot(viewDirectionWS,X), dot(viewDirectionWS,Y), ax, ay);
+    float Gs = smithG_GGX_aniso(NoL,dot(lightDir,X), dot(lightDir,Y), ax, ay);
+    Gs *= smithG_GGX_aniso(NoV, dot(viewDir,X), dot(viewDir,Y), ax, ay);
 
     float3 Fsheen = FH * sheen * Csheen;
 
