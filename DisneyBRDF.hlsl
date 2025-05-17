@@ -87,7 +87,7 @@ float3 DisneyBrdf(float3 lightDir, float3 viewDir, float3 normal, float3 X, floa
         return float3(0,0,0);
     }
 
-    float H = normalize(lightDir + viewDir);
+    float3 H = normalize(lightDir + viewDir);
 
     float NoH = dot(normal, H);
     float LoH = dot(lightDir, H);
@@ -132,7 +132,7 @@ float3 DisneyBrdf(float3 lightDir, float3 viewDir, float3 normal, float3 X, floa
 
     float3 Fsheen = FH * sheen * Csheen;
 
-    float3 Dr = GTR1(NoH,lerp(0.1,0.001,clearcoatGloss));
+    float Dr = GTR1(NoH,lerp(0.1,0.001,clearcoatGloss));
     float Fr = lerp(0.04,1.0,FH);
     float Gr = SmithG_GGX(NoL, 0.25) * SmithG_GGX(NoV, 0.25);
 
