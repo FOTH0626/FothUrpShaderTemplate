@@ -1,3 +1,5 @@
+#ifndef FOTH_DISNEY_BRDF_HLSL
+#define FOTH_DISNEY_BRDF_HLSL
 // # variables go here...
 // # [type] [name] [min val] [max val] [default val]
 // ::begin parameters
@@ -141,3 +143,5 @@ float3 DisneyBrdf(float3 lightDir, float3 viewDir, float3 normal, float3 X, floa
 
     return color;
 }
+
+#endif
