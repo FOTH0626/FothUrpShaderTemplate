@@ -16,6 +16,7 @@
 // float clearcoatGloss 0 1 1
 // ::end parameters
 
+const float MY_PI = 3.1415926;
 
 struct DisneyBrdfData
 {
@@ -43,22 +44,22 @@ float FresnelSchlick ( float u )
 
 float GTR1(float NoH, float a)
 {
-    if (a >= 1) {return 1/PI;}
+    if (a >= 1) {return 1/MY_PI;}
 
     float a2 = a * a;
     float t = 1 + (a2 - 1) * NoH * NoH;
-    return (a2 -1)/(PI * log(a2) * t);
+    return (a2 -1)/(MY_PI * log(a2) * t);
 }
 float GTR2(float NoH, float a)
 {
     float a2 = a * a;
     float t = 1 + (a2 - 1) * NoH * NoH;
-    return a2/(PI * t * t);
+    return a2/(MY_PI * t * t);
 }
 
 float GTR2_aniso(float NoH, float Hox, float Hoy, float ax, float ay)
 {
-    return  1/ (PI * ax * ay * pow2( pow2(Hox/ax) + pow2(Hoy/ay) + NoH*NoH) );
+    return  1/ (MY_PI * ax * ay * pow2( pow2(Hox/ax) + pow2(Hoy/ay) + NoH*NoH) );
 }
 
 float SmithG_GGX(float NoV, float alphaG)
@@ -139,7 +140,7 @@ float3 DisneyBrdf(float3 lightDir, float3 viewDir, float3 normal, float3 X, floa
     float Gr = SmithG_GGX(NoL, 0.25) * SmithG_GGX(NoV, 0.25);
 
     
-    float3 color = ( (1/PI) * lerp(Fd, ss, subSurface)*Cdlin + Fsheen ) * (1- metallic) + Gs * Fs * Ds + 0.25*clearcoat*Gr*Fr *Dr; 
+    float3 color = ( (1/MY_PI) * lerp(Fd, ss, subSurface)*Cdlin + Fsheen ) * (1- metallic) + Gs * Fs * Ds + 0.25*clearcoat*Gr*Fr *Dr; 
 
     return color;
 }
