@@ -16,7 +16,7 @@
 // float clearcoatGloss 0 1 1
 // ::end parameters
 
-const float MY_PI = 3.1415926;
+#define MY_PI 3.1415926
 
 struct DisneyBrdfData
 {
