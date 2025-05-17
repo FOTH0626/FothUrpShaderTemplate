@@ -105,7 +105,7 @@ float3 DisneyBrdf(float3 lightDir, float3 viewDir, float3 normal, float3 X, floa
     float clearcoatGloss = brdfData.clearcoatGloss;
 
     float3 Cdlin = mon2lin(albedo);
-    float Cdlum = dot(Cdlin, float3(0.2126, 0.7152, 0.0722));
+    float Cdlum = dot(Cdlin, float3(0.3, 0.6, 0.1));//aluminance approx.
 
     float3 Ctint = Cdlum > 0 ? Cdlin/Cdlum : float3(1,1,1);
     float3 Cspec0 = lerp(specular*.08*lerp(float3(1,1,1),Ctint,specularTint), Cdlin, metallic);
